@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   db:
-    image: mysql:latest
+    image: mysql:9.5.0
     container_name: Warehouse_mysql
     ports:
       - "3306:3306"
