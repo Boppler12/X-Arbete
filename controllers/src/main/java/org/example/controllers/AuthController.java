@@ -1,5 +1,5 @@
 package org.example.controllers;
-
+/*
 import org.example.auth.DTO.AuthResponse;
 import org.example.auth.DTO.LoginRequest;
 import org.example.bff.JwtService;
@@ -41,3 +41,4 @@ public class AuthController {
 
     private record UserCreationRequest(String username, String name, String email){}
 }
+*/
