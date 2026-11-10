@@ -20,7 +20,7 @@ public class AuthController {
     private final RestClient restClient;
 
     public AuthController(JwtService jwtService) {
-        this.jwtService = JWS_Token;
+        this.jwtService = jwtService;
         this.restClient = RestClient.builder().build();
     }
 
