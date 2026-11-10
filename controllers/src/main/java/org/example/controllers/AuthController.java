@@ -1,6 +1,8 @@
 package org.example.controllers;
 
-import org.example.auth.*;
+import org.example.auth.DTO.AuthResponse;
+import org.example.auth.DTO.LoginRequest;
+import org.example.bff.JwtService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,8 +17,8 @@ public class AuthController {
     private final JwtService jwtService;
     private final RestClient restClient;
 
-    public AuthController(Jwtservice jwtservice)
-        this.jwtService= jwtService;
+    public AuthController(jwtservice jwtservice)
+        this.JwtService= jwtService;
         this.restClient= RestClient.builder().build();
 
     @PostMapping("/login")

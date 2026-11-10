@@ -5,27 +5,29 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClient;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class AuthController {
 
-    final private RestClient restClient;
-
-    final private JwtService jwtService;
+    private final RestClient restClient;
+    private final JwtService jwtService;
 
     public AuthController(JwtService jwtService){
-        this.jwtService= jwtService;
-        this.restClient= RestClient.builder().build();
+        this.jwtService = jwtService;
+        this.restClient = RestClient.builder().build();
     }
-    // logga in(anrobar controllers)
-    @RequestMapping("/login")
-    public ResponseEntity<Object> login(@RequestBody Object Credentials){
+    //Logga in (Anropar Auth Service)
+    @PostMapping("/login")
+    public ResponseEntity<Object> login(@RequestBody Object credentials) {
         return restClient.post()
-                .uri("https://localhost:8081/auth/login")
+                .uri("http://localhost:8081/auth/login")
                 .body(credentials)
                 .retrieve()
-                .toEntity(object.class);
+                .toEntity(Object.class);
     }
+
     // Skapa användare (Anropar User Service)
     @PostMapping("/users")
     public ResponseEntity<Object> createUser(@RequestBody Object user) {
@@ -66,8 +68,5 @@ public class AuthController {
                 .retrieve()
                 .toEntity(Object.class);
     }
-}
-
-
 
 }

@@ -1,4 +1,4 @@
-package org.example.auth;
+package org.example.auth.Service;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
