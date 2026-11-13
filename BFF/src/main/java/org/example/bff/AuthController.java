@@ -40,12 +40,11 @@ public class AuthController {
 
     //  Skicka meddelande (Anropar Message Service med JWT-krav)
     @PostMapping("/messages")
-    public ResponseEntity<Object> forwardMessage(@RequestBody Object message, @RequestHeader("Authorization") String token) {
-        String jwt = token.startsWith("Bearer ") ? token.substring(7) : token;
-
-        if (!jwtService.validateToken(jwt)) {
+    public ResponseEntity<Object> forwardMessage(@RequestBody Object message, @RequestHeader(value = "Authorization", required = false) String token) {
+        if (token == null || !token.startsWith("Bearer ")) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Ogiltig eller saknar token");
         }
+        String jwt = token.substring(7);
 
         return restClient.post()
                 .uri("http://localhost:8082/message/send")
