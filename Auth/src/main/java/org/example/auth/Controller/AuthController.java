@@ -24,22 +24,20 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-      public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
-        //Validering för användarnamn/lösenord inte är tomma
+    public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
 
-        if ("admin".equals(loginRequest.username()) && "password".equals(loginRequest.password())) {
-            // Skapa admin-användaren i User-tjänsten om den inte finns
-            restClient.post()
-                    .uri("http://localhost:8083/users")
-                    .body(new UserCreationRequest("admin", "Administrator", "admin@example.com"))
-                    .retrieve()
-                    .toBodilessEntity();
+        boolean authenticated = authService.authenticate(
+                loginRequest.username(),
+                loginRequest.password()
+        );
 
-            String token = jws_token.generateToken(loginRequest.username());
-            return ResponseEntity.ok(new AuthResponse(token, 3600));
-        } else {
+        if (!authenticated) {
             return ResponseEntity.status(401).build();
         }
+
+        String token = jwtService.generateToken(loginRequest.username());
+
+        return ResponseEntity.ok(new AuthResponse(token, 3600));
     }
 
     private record UserCreationRequest(String userId, String name, String email) {}
