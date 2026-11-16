@@ -46,6 +46,10 @@ public class AuthController {
         }
         String jwt = token.substring(7);
 
+        if (!jwtService.validateToken(jwt)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Ogiltig eller saknar token");
+        }
+
         return restClient.post()
                 .uri("http://localhost:8082/message/send")
                 .body(message)
