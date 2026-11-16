@@ -25,6 +25,7 @@ public class AuthController {
                 .uri("http://localhost:8081/auth/login")
                 .body(credentials)
                 .retrieve()
+                .onStatus(Status->true,(req,res)->{})
                 .toEntity(Object.class);
     }
 
