@@ -72,5 +72,4 @@ public class AuthController {
                 .retrieve()
                 .toEntity(Object.class);
     }
-
 }
