@@ -1,6 +1,9 @@
 # IntelliJ
 .idea/
 *.iml
+.env
+.env.local
+.env.*.local
 out/
 
 # Maven
