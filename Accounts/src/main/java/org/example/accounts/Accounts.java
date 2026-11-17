@@ -3,7 +3,7 @@ package org.example.accounts;
 import lombok.*;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "accounts")
