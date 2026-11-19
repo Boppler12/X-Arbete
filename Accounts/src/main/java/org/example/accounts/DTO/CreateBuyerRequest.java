@@ -3,19 +3,23 @@ package org.example.accounts.DTO;
 import lombok.Getter;
 import lombok.Setter;
 
-public class CreateAccountRequest {
+@Getter
+@Setter
+public class CreateBuyerRequest {
 
-    @Getter
-    private String name;
-    @Getter
+
+    private String firstName;
+
+    private String lastName;
+
     private String email;
-    @Getter
+
     private String password;
-    @Getter
+
     private String phoneNumber;
-    @Getter
+
     private String address;
-    @Getter
+
     private String companyName;
 
 }
