@@ -7,6 +7,7 @@ import org.example.accounts.entity.Accounts;
 import org.example.accounts.enums.AccountRoles;
 import org.example.accounts.enums.AccountStatus;
 import org.example.accounts.repository.AccountsRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class SellerService {
 
     private final AccountsRepository accountsRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public AccountResponse createSeller(CreateSellerRequest request) {
         if (accountsRepository.existsByEmail(request.getEmail())) {
@@ -22,8 +24,8 @@ public class SellerService {
 
         Accounts seller = Accounts.builder()
                 .email(request.getEmail())
-                .passwordHash(request.getPassword()) // Byt till hashning senare
-                .role(AccountRoles.SELLER)
+                .passwordHash(passwordEncoder.encode(request.getPassword()))
+                .role(AccountRoles.SELLERS)
                 .status(AccountStatus.ACTIVE)
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())

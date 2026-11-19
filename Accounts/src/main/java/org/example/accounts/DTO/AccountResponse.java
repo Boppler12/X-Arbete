@@ -1,5 +1,6 @@
 package org.example.accounts.DTO;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.accounts.enums.AccountRoles;
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@Builder
 public class AccountResponse {
 
     private Long id;
