@@ -1,4 +1,4 @@
-package org.example.accounts;
+package org.example.accounts.Enum;
 
 public enum AccountStatus {
     ACTIVE,

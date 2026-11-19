@@ -1,9 +1,8 @@
 package org.example.accounts.DTO;
 
 import lombok.Getter;
-import lombok.Setter;
 
-public class CreateAccountRequest {
+public class CreateBuyerRequest {
 
     @Getter
     private String name;
