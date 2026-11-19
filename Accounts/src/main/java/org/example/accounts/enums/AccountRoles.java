@@ -1,4 +1,4 @@
-package org.example.accounts.Enum;
+package org.example.accounts.enums;
 
 public enum AccountRoles {
     ADMIN,

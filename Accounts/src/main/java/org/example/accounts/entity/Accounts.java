@@ -2,8 +2,8 @@ package org.example.accounts.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.accounts.Enum.AccountStatus;
-import org.example.accounts.Enum.AccountRoles;
+import org.example.accounts.enums.AccountStatus;
+import org.example.accounts.enums.AccountRoles;
 
 import java.time.LocalDateTime;
 
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Account {
+public class Accounts {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
