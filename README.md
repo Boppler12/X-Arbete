@@ -1,5 +1,9 @@
 java 25
 
+## Build order
+
+`Accounts` depends on the local Maven artifact:
+
 in this poject i will create a application that will
 help sellers and buyers of warhouse space connect
 with each other, where there will be a ads from the sellers
