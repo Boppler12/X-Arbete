@@ -9,6 +9,8 @@ import org.example.accounts.enums.AccountStatus;
 import org.example.accounts.repository.AccountsRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.example.exceptionhandler.GlobalExceptionHandler;
+
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +21,7 @@ public class SellerService {
 
     public AccountResponse createSeller(CreateSellerRequest request) {
         if (accountsRepository.existsByEmail(request.getEmail())) {
-            throw new IllegalArgumentException("Email is already in use");
+            throw new IllegalArgumentException("Email already exists");
         }
 
         Accounts seller = Accounts.builder()
