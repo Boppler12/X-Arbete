@@ -1,5 +1,7 @@
 package org.example.accounts.config;
 
+import org.example.CommonSecurity.SharedSecurityConfig.ForbiddenHandler;
+import org.example.CommonSecurity.SharedSecurityConfig.UnAuthorizedError;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -17,13 +19,22 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(
+            HttpSecurity http,
+            UnAuthorizedError unAuthorizedError,
+            ForbiddenHandler forbiddenHandler
+    ) throws Exception {
         http.csrf(csrf -> csrf.disable())
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint(unAuthorizedError)
+                        .accessDeniedHandler(forbiddenHandler)
+                )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/buyers/create").permitAll()
                         .anyRequest().authenticated()
                 );
+
         return http.build();
     }
 }

@@ -1,6 +1,5 @@
 package org.example.accounts.Buyer;
 
-
 import lombok.RequiredArgsConstructor;
 import org.example.accounts.DTO.AccountResponse;
 import org.example.accounts.DTO.CreateBuyerRequest;
@@ -10,8 +9,6 @@ import org.example.accounts.enums.AccountStatus;
 import org.example.accounts.repository.AccountsRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import static org.springframework.http.ResponseEntity.status;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +20,10 @@ public class BuyerService {
     public AccountResponse createBuyer(CreateBuyerRequest request) {
         if (accountsRepository.existsByEmail(request.getEmail())) {
             throw new IllegalArgumentException("Email already exists");
+        }
+
+        if (request.getCompanyName() != null && request.getCompanyName().length() > 150) {
+            throw new IllegalArgumentException("Company name must be 150 characters or fewer");
         }
 
         Accounts buyer = Accounts.builder()

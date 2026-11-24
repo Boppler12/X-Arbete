@@ -88,6 +88,12 @@
 
         <dependency>
             <groupId>org.example</groupId>
+            <artifactId>CommonSecurity</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.example</groupId>
             <artifactId>ExceptionHandler</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

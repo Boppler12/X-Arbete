@@ -1,4 +1,4 @@
-package org.example.commonsecurity.SharedSecurityConfig;
+package org.example.CommonSecurity.SharedSecurityConfig;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

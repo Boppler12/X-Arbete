@@ -1,8 +1,12 @@
 package org.example.ExceptionHandler;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.ErrorResponseException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -10,6 +14,8 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, String>> handleIllegalArgumentException(IllegalArgumentException exception) {
@@ -30,17 +36,25 @@ public class GlobalExceptionHandler {
                 .body(Map.of("message", "Email already exists"));
     }
 
-    //error 404 Not Found
-    //@ExceptionHandler(IllegalArgumentException.class)
-    //public ResponseEntity<map<String, String>>handleIllegalArgumentExcption
-    //error 500 Internal Server Error
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Map<String, String>> handleException(Exception exception) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(Map.of("message", exception.getMessage()));
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<Map<String, String>> handleHttpMessageNotReadableException(
+            HttpMessageNotReadableException exception
+    ) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("message", "Malformed request body"));
     }
 
-    //error 401 Unauthorized
+    @ExceptionHandler(ErrorResponseException.class)
+    public ResponseEntity<Map<String, String>> handleErrorResponseException(ErrorResponseException exception) {
+        return ResponseEntity.status(exception.getStatusCode())
+                .body(Map.of("message", "Request could not be processed"));
+    }
 
-    //error 403 Forbidden
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Map<String, String>> handleException(Exception exception) {
+        logger.error("Unhandled exception", exception);
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(Map.of("message", "Internal server error"));
+    }
 }
