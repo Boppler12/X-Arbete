@@ -3,6 +3,7 @@ package org.example.auth.Controller;
 import jakarta.validation.Valid;
 import org.example.auth.DTO.AuthResponse;
 import org.example.auth.DTO.LoginRequest;
+import org.example.auth.Service.AuthService;
 import org.example.auth.Service.JWS_Token;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,10 +17,12 @@ import org.springframework.web.client.RestClient;
 public class AuthController {
 
     private final JWS_Token jws_token;
+    private final AuthService authService;
     private final RestClient restClient;
 
-    public AuthController(JWS_Token jws_token) {
+    public AuthController(JWS_Token jws_token, AuthService authService) {
         this.jws_token = jws_token;
+        this.authService = authService;
         this.restClient = RestClient.builder().build();
     }
 
@@ -35,7 +38,7 @@ public class AuthController {
             return ResponseEntity.status(401).build();
         }
 
-        String token = jwtService.generateToken(loginRequest.username());
+        String token = jws_token.generateToken(loginRequest.username());
 
         return ResponseEntity.ok(new AuthResponse(token, 3600));
     }

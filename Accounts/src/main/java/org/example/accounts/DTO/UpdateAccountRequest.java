@@ -1,20 +1,24 @@
 package org.example.accounts.DTO;
 
 import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class UpdateAccountRequest {
 
-    @Getter
-    private String name;
-    @Getter
+
+    private String firstName;
+
+    private String lastName;
+
+    private String comapnyName;
+
     private String email;
 
-    @Getter
     private String password;
 
-    @Getter
     private String newPassword;
 
-    @Getter
     private String confirmPassword;
 }

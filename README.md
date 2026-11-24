@@ -1,4 +1,8 @@
-java 25
+# Build order
+
+`Accounts` depends on the local Maven artifact `exceptionhandler` / `ExceptionHandler`.
+
+Before building `Accounts`, build and install the `ExceptionHandler` module locally:
 
 in this poject i will create a application that will
 help sellers and buyers of warhouse space connect
