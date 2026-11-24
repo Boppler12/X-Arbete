@@ -9,7 +9,7 @@ import org.example.accounts.enums.AccountStatus;
 import org.example.accounts.repository.AccountsRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.example.exceptionhandler.GlobalExceptionHandler;
+import org.example.ExceptionHandler.GlobalExceptionHandler;
 
 
 @Service

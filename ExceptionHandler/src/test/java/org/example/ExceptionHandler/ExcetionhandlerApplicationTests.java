@@ -1,4 +1,4 @@
-package org.example.excetionhandler;
+package org.example.ExceptionHandler;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

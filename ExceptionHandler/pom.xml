@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.example</groupId>
-    <artifactId>exceptionhandler</artifactId>
+    <artifactId>ExceptionHandler</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>excetionhandler</name>
     <description>excetionhandler</description>

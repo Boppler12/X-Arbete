@@ -1,6 +1,6 @@
 package org.example.accounts;
 
-import org.example.exceptionhandler.GlobalExceptionHandler;
+import org.example.ExceptionHandler.GlobalExceptionHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;

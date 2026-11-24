@@ -1,4 +1,4 @@
-package org.example.excetionhandler;
+package org.example.ExceptionHandler;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
