@@ -32,6 +32,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/buyers/create").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/internal/accounts/by-email").hasRole("INTERNAL_SERVICE")
                         .anyRequest().authenticated()
                 );
 
