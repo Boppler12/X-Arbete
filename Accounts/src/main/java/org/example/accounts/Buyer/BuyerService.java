@@ -34,6 +34,7 @@ public class BuyerService {
                 .lastName(request.getLastName())
                 .phoneNumber(request.getPhoneNumber())
                 .address(request.getAddress())
+                .companyName(request.getCompanyName())
                 .build();
 
         Accounts savedBuyer = accountsRepository.save(buyer);
